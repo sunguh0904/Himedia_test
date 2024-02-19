@@ -18,12 +18,12 @@ public class BookMenu {
         while (true) {
 
             System.out.println("========Menu========");
-            System.out.println("1. Add Book");
-            System.out.println("2. Delete Book");
-            System.out.println("3. Search Book");
+            System.out.println("1. 도서 추가");
+            System.out.println("2. 도서 삭제");
+            System.out.println("3. 도서 검색");
             System.out.println("4. Print Book");
-            System.out.println("5. Display Book");
-            System.out.println("0. programDown");
+            System.out.println("5. 전체 도서 조회");
+            System.out.println("0. 프로그램 종료");
             System.out.println("=====================");
 
             int choiceNum = sc.nextInt();
@@ -31,7 +31,10 @@ public class BookMenu {
             switch (choiceNum) {
                 case 1 : bm.addBook(inputBook());
                     break;
-                case 2 : bm.deleteBook(inputBookDelete());
+                case 2 :
+                    System.out.print("삭제 도서 번호 : ");
+                    int deleteNum = sc.nextInt();
+                    bm.deleteBook(deleteNum);
                     break;
                 case 3 : bm.searchBook(inputBookTitle());
                     break;
@@ -60,22 +63,10 @@ public class BookMenu {
         return bookDTO;
     }
 
-//    public int inputBookPrint () {
-//        System.out.print("검색 도서 번호 : ");
-//        int printNum = sc.nextInt();
-//        return printNum;
-//    }
-
     public int inputBookPrint () {
         System.out.print("검색 도서 번호 : ");
         int printNum = sc.nextInt();
         return printNum;
-    }
-
-    public int inputBookDelete() {
-        System.out.print("삭제 도서 번호 : ");
-        int deleteNum = sc.nextInt();
-        return deleteNum;
     }
 
     public String inputBookTitle() {

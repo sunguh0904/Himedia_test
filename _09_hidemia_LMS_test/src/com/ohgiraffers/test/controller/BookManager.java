@@ -14,12 +14,13 @@ public class BookManager {
     }
 
     public void deleteBook(int index) {
-        for (BookDTO bookDTO : list) {
-            if (bookDTO.equals(index)) {
-                list.remove(index);
-            }
+
+        if (index >= 0 && index < list.size()) {
+            list.remove(index);
+            System.out.println("해당 도서를 삭제 했습니다.");
+        }else {
+            System.out.println("해당 도서를 찾을 수 없습니다.");
         }
-        System.out.println("해당 도서를 삭제 했습니다.");
     }
 
     public int searchBook(String title) {
