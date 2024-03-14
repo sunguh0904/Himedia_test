@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.management.product.model.dao.ProductDAO">
+
+    <resultMap id="productResultMap" type="com.management.product.model.dto.ProductDTO">
+        <id property="productCode" column="PRODUCT_CODE"/>
+        <result property="productName" column="PRODUCT_NAME"/>
+        <result property="originCost" column="ORIGIN_COST"/>
+        <result property="releaseDate" column="RELEASE_DATE"/>
+        <result property="discountRate" column="DISCOUNT_RATE"/>
+        <result property="salesQuantity" column="SALES_QUANTITY"/>
+        <result property="stockQuantity" column="STOCK_QUANTITY"/>
+        <result property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="productionStatus" column="PRODUCTION_STATUS"/>
+    </resultMap>
+
+    <select id="selectAllProductList" resultMap="productResultMap">
+        SELECT
+            PRODUCT_CODE,
+            PRODUCT_NAME,
+            ORIGIN_COST,
+            CONCAT(
+                SUBSTRING(RELEASE_DATE, 1, 4),
+                SUBSTRING(RELEASE_DATE, 5, 2),
+                SUBSTRING(RELEASE_DATE, 7 ,2)
+            ) AS RELEASE_DATE,
+            DISCOUNT_RATE,
+            SALES_QUANTITY,
+            STOCK_QUANTITY,
+            CATEGORY_CODE,
+            PRODUCTION_STATUS
+        FROM PRODUCT_INFO
+    </select>
+
+    <select id="selectProductByCondition" parameterType="SearchCondition" resultMap="productResultMap">
+        SELECT *
+        FROM PRODUCT_INFO
+        <if test="option == 'productName'">
+            WHERE PRODUCT_NAME LIKE CONCAT('%', #{ value }, '%')
+        </if>
+
+        <choose>
+            <when test="option == 'salesStore'">
+                <choose>
+                    <when test="value == '백화점'">
+                        WHERE DISCOUNT_RATE = 0
+                    </when>
+
+                    <when test="value == '아울렛'">
+                        <![CDATA[WHERE DISCOUNT_RATE > 0]]>
+                    </when>
+                </choose>
+            </when>
+        </choose>
+
+        <if test="option == 'newProduct'">
+            <![CDATA[WHERE RELEASE_DATE >= 20230301 AND RELEASE_DATE < 20230401]]>
+            ORDER BY RELEASE_DATE DESC
+        </if>
+
+        <if test="option == 'nonProduction'">
+            WHERE PRODUCTION_STATUS = 'N'
+        </if>
+    </select>
+
+    <insert id="insertProduct" parameterType="ProductDtoAlias">
+        INSERT INTO PRODUCT_INFO (
+            PRODUCT_NAME,
+            CATEGORY_CODE,
+            ORIGIN_COST,
+            RELEASE_DATE,
+            STOCK_QUANTITY,
+            DISCOUNT_RATE,
+            PRODUCTION_STATUS,
+            SALES_QUANTITY
+        )
+        VALUES (
+            #{ productName },
+            #{ categoryCode },
+            #{ originCost },
+            REPLACE(#{ releaseDate }, '-', ''),
+            #{ stockQuantity },
+            #{ discountRate },
+            'Y',
+            0
+        )
+    </insert>
+
+    <update id="updateProduct" parameterType="ProductDtoAlias">
+        UPDATE PRODUCT_INFO
+
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="productName != 'SKIP'">
+                PRODUCT_NAME =  #{ productName }
+            </if>
+
+            <if test="categoryCode != 'SKIP'">
+                , CATEGORY_CODE = #{ categoryCode }
+            </if>
+
+            <if test="originCost != 'SKIP'">
+                , ORIGIN_COST =  #{ originCost }
+            </if>
+
+            <if test="releaseDate != 'SKIP'">
+            , RELEASE_DATE = REPLACE(#{ releaseDate }, '-', '')
+            </if>
+
+            <if test="stockQuantity != 'SKIP'">
+                , STOCK_QUANTITY = #{ stockQuantity }
+            </if>
+
+            <if test="discountRate != 'SKIP'">
+                , DISCOUNT_RATE = #{ discountRate }
+            </if>
+
+            <if test="salesQuantity != 'SKIP'">
+                , SALES_QUANTITY = #{ salesQuantity }
+            </if>
+
+            <if test="productionStatus != 'SKIP'">
+                , PRODUCTION_STATUS = #{ productionStatus }
+            </if>
+        </trim>
+        WHERE PRODUCT_CODE = #{ productCode }
+    </update>
+
+    <delete id="deleteProduct" parameterType="ProductDtoAlias">
+        DELETE FROM PRODUCT_INFO
+        WHERE PRODUCT_CODE = #{ productCode }
+    </delete>
+
+</mapper>

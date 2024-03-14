@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.management.category.model.dao.CategoryDAO">
+
+    <resultMap id="categoryResultMap" type="com.management.category.model.dto.CategoryDTO">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+    </resultMap>
+
+    <select id="selectCategoryList" parameterType="SearchCondition" resultMap="categoryResultMap">
+        SELECT
+            C.CATEGORY_CODE,
+            C.CATEGORY_NAME
+        FROM
+            PRODUCT_CATEGORY C
+        <if test="option == 'orderList'">
+            JOIN PRODUCT_INFO I ON C.CATEGORY_CODE = I.CATEGORY_CODE
+            WHERE I.STOCK_QUANTITY > 0
+            GROUP BY C.CATEGORY_CODE
+            ORDER BY MAX(I.STOCK_QUANTITY) DESC
+        </if>
+        <if test="option == 'allList'">
+            WHERE 1=1
+        </if>
+    </select>
+
+    <insert id="insertCategory" parameterType="SearchCondition">
+        INSERT INTO PRODUCT_CATEGORY (CATEGORY_NAME)
+        VALUES (
+            #{ categoryName }
+        )
+    </insert>
+
+    <update id="updateCategory" parameterType="SearchCondition">
+        UPDATE PRODUCT_CATEGORY
+        SET CATEGORY_NAME = #{ categoryName }
+        WHERE CATEGORY_CODE = #{ categoryCode }
+    </update>
+
+    <delete id="deleteCategory" parameterType="SearchCondition">
+        DELETE FROM PRODUCT_CATEGORY
+        WHERE CATEGORY_CODE = #{ categoryCode }
+    </delete>
+
+</mapper>
