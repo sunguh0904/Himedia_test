@@ -1,0 +1,97 @@
+@charset "UTF-8";
+@import url(reset.css);
+
+* {box-sizing: border-box;}
+
+* {
+    background-color: #111;
+    color: #fff;
+    font-family: D2Coding;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.flex {
+    display: flex;;
+}
+
+#section01 {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.topSection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#section01 .topSection .bg-white {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+}
+
+#section01 .wrap {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+#section01 .topSection .identity-label {
+    color: #000;
+    font-size: 100px;
+    position: absolute;
+    left: 5%;
+    top: 10%;
+}
+
+#section01 .topSection .info {
+    position: absolute;
+    color: #000;
+    font-size: 50px;
+    top: 50%;
+    left: 5%;
+}
+
+#section01 .topSection .skill {
+    position: absolute;
+    color: #000;
+    font-size: 50px;
+    top: 75%;
+    left: 5%;
+}
+
+.bottomSection {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+}
+
+.bottomSection .wrap {
+    position: relative;
+}
+
+.bottomSection .project {
+    position: absolute;
+    color: #fff;
+    font-size: 50px;
+    top: 70%;
+    right: 50%;
+}
+
+.bottomSection .history {
+    position: absolute;
+    color: #fff;
+    font-size: 50px;
+    top: 45%;
+    right: 50%;
+}
