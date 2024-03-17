@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(reset.css);
+@import url(/none/css/reset.css);
 
 * {box-sizing: border-box;}
 
@@ -17,21 +17,27 @@
     display: flex;;
 }
 
-#section01 {
+.relative {
     position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+/* ====================================================== */
+
+#section01 {
     height: 100vh;
     overflow: hidden;
 }
 
 .topSection {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
 }
 
-#section01 .topSection .bg-white {
+.topSection .backgroundBlock {
     width: 100%;
     height: 50%;
     position: absolute;
