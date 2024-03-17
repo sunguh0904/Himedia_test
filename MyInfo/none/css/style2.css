@@ -1,2 +1,30 @@
 @import url(/none/css/reset.css);
 
+* {
+    box-sizing: border-box;
+    font-family: D2Coding;
+}
+
+.sectionWrap {
+    /* display: flex; */
+    position: absolute;
+}
+
+.topSection {
+    background-color: #000;
+    color: #fff;
+    height: 50vh;
+    width: 100%;
+    position: relative;
+}
+
+.topSection a {
+    color: #fff;
+    border: 1px solid red;
+}
+
+.bottomSection {
+    height: 50vh;
+    width: 100%;
+    position: relative;
+}
