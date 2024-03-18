@@ -1,103 +1,49 @@
-@charset "UTF-8";
-@import url(/none/css/reset.css);
-
-* {box-sizing: border-box;}
-
-* {
-    background-color: #111;
-    color: #fff;
-    font-family: D2Coding;
+body {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    color: #ccc;
+    margin: 0 auto;
+    padding: 0;
 }
 
-.bg-white {
-    background-color: #fff;
-}
-
-.flex {
-    display: flex;;
-}
-
-.relative {
-    position: relative;
-}
-
-.absolute {
-    position: absolute;
-}
-
-/* ====================================================== */
-
-#section01 {
+.wrap {
+    display: flex;
     height: 100vh;
-    overflow: hidden;
 }
 
-.topSection {
-    width: 100%;
+.leftSide {
+    background-color: #333;
+    width: 20%;
+}
+
+.leftSide .logo {
+    border: 1px solid #ff0000;
+    height: 30%;
+}
+
+.leftSide .sns {
+    border: 1px solid #00ff00;
+    height: 20%;
+    background: #202020;
+}
+
+.leftSide .sns > ul {
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.topSection .backgroundBlock {
-    width: 100%;
-    height: 50%;
-    position: absolute;
+.leftSide .sns img {
+    width: 70%;
+    /* border: 1px solid #000; */
 }
 
-#section01 .wrap {
-    position: relative;
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
-}
-
-#section01 .topSection .identity-label {
-    color: #000;
-    font-size: 100px;
-    position: absolute;
-    left: 5%;
-    top: 10%;
-}
-
-#section01 .topSection .info {
-    position: absolute;
-    color: #000;
-    font-size: 50px;
-    top: 50%;
-    left: 5%;
-}
-
-#section01 .topSection .skill {
-    position: absolute;
-    color: #000;
-    font-size: 50px;
-    top: 75%;
-    left: 5%;
-}
-
-.bottomSection {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
+.leftSide .sideWrap {
+    border: 1px solid #0000ff;
     height: 50%;
 }
-
-.bottomSection .wrap {
-    position: relative;
-}
-
-.bottomSection .project {
-    position: absolute;
-    color: #fff;
-    font-size: 50px;
-    top: 70%;
-    right: 50%;
-}
-
-.bottomSection .history {
-    position: absolute;
-    color: #fff;
-    font-size: 50px;
-    top: 45%;
-    right: 50%;
+.rightSide {
+    background-color: #222;
+    width: 80%;
 }
