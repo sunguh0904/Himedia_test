@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>selected menu</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>음료번호</th>
+            <th>음료이름</th>
+            <th>음료가격</th>
+            <th>카테고리코드</th>
+        </tr>
+        <tr>
+            <td th:text="${ drink.drinkCode }"></td>
+            <td th:text="${ drink.drinkName }"></td>
+            <td th:text="${ drink.drinkPrice }"></td>
+            <td th:text="${ drink.categoryCode }"></td>
+        </tr>
+    </table>
+</body>
+</html>

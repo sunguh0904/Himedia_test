@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>regist menu</title>
+</head>
+<body>
+    <h1>신규 음료 등록</h1>
+
+    <form action="/drink/regist" method="post">
+        <label>음료 이름 : </label><input type="text" name="drinkName"><br>
+        <label>음료 가격 : </label><input type="number" name="drinkPrice"><br>
+        <label>카테고리 : </label>
+            <select name="categoryCode" id="categoryCode">
+            </select><br>
+        <label>판매 상태 : </label>
+            <select name="orderableStatus">
+                <option value="Y">판매가능</option>
+                <option value="N">판매불가</option>
+            </select><br>
+        <input type="submit" value="음료 등록">
+    </form>
+
+    <script>
+        fetch('/drink/category')
+            .then(res => res.json())
+            .then(data => {
+                const $categoryCode = document.getElementById('categoryCode');
+
+                for(let index in data) {
+                    const $option = document.createElement('option');
+                    $option.value = data[index].categoryCode;
+                    $option.textContent = data[index].categoryName;
+
+                    $categoryCode.appendChild($option);
+                }
+            });
+    </script>
+</body>
+</html>

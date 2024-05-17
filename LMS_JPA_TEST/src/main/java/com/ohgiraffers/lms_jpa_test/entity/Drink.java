@@ -10,8 +10,7 @@ public class Drink {
 
     @Id
     private int drinkCode;
-
     private String drinkName;
-
     private int drinkPrice;
+    private int categoryCode;
 }
