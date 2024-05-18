@@ -1,5 +1,6 @@
-package com.ohgiraffers.lms_jpa_test.entity;
+package com.ohgiraffers.lms_jpa_test.model;
 
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -10,6 +11,5 @@ public class Category {
 
     @Id
     private int categoryCode;
-
     private String categoryName;
 }

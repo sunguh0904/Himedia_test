@@ -5,21 +5,19 @@
     <title>search result</title>
 </head>
 <body>
-    <h1>[[${drinkPrice}]]원을 초과하는 음료 목록</h1>
+    <h1>[[${drinkPrice}]]원 이상인 음료 목록</h1>
     <table>
         <tr>
             <th>음료번호</th>
             <th>음료이름</th>
             <th>음료가격</th>
             <th>카테고리코드</th>
-            <th>판매상태</th>
         </tr>
-        <tr th:each="drink : ${ drinkList }">
+        <tr th:each="drink : ${ drinks }">
             <th th:text="${ drink.drinkCode }"></th>
             <th th:text="${ drink.drinkName }"></th>
             <th th:text="${ drink.drinkPrice }"></th>
             <th th:text="${ drink.categoryCode }"></th>
-            <th th:text="${ drink.orderableStatus }"></th>
         </tr>
     </table>
 </body>

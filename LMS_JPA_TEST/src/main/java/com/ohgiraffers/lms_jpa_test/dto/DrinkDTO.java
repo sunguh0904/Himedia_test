@@ -17,5 +17,4 @@ public class DrinkDTO {
     private int categoryCode;
 
     public DrinkDTO() {}
-
 }

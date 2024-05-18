@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>regist menu</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <h1>신규 음료 등록</h1>
@@ -13,18 +14,13 @@
         <label>카테고리 : </label>
             <select name="categoryCode" id="categoryCode">
             </select><br>
-        <label>판매 상태 : </label>
-            <select name="orderableStatus">
-                <option value="Y">판매가능</option>
-                <option value="N">판매불가</option>
-            </select><br>
         <input type="submit" value="음료 등록">
     </form>
 
     <script>
-        fetch('/drink/category')
-            .then(res => res.json())
-            .then(data => {
+        axios('/drink/nativeQueryCategory')
+            .then(res => {
+                const data = res.data;
                 const $categoryCode = document.getElementById('categoryCode');
 
                 for(let index in data) {

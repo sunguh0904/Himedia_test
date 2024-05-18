@@ -1,4 +1,4 @@
-package com.ohgiraffers.lms_jpa_test.entity;
+package com.ohgiraffers.lms_jpa_test.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -13,4 +13,8 @@ public class Drink {
     private String drinkName;
     private int drinkPrice;
     private int categoryCode;
+
+    public void modifyDrinkName(String drinkName) {
+        this.drinkName = drinkName;
+    }
 }
