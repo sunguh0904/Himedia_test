@@ -13,18 +13,19 @@ CREATE TABLE IF NOT EXISTS tbl_drink (
     DRINK_PRICE INT NOT NULL,
     CATEGORY_CODE INT NOT NULL,
     FOREIGN KEY(CATEGORY_CODE) REFERENCES tbl_category(CATEGORY_CODE)
-) ENGINE = INNODB;
+) ENGINE = INNODB AUTO_INCREMENT = 1;
+ALTER TABLE tbl_drink AUTO_INCREMENT = 1;
 
 ALTER TABLE tbl_category AUTO_INCREMENT = 1;
 ALTER TABLE tbl_drink AUTO_INCREMENT = 1;
 
-INSERT INTO tbl_category (CATEGORY_NAME)
+INSERT INTO tbl_category (CATEGORY_CODE, CATEGORY_NAME)
 VALUES
-('탄산음료'),
-('이온음료'),
-('과즙음료'),
-('제로음료'),
-('에너지음료');
+(1, '탄산음료'),
+(2, '이온음료'),
+(3, '과즙음료'),
+(4, '제로음료'),
+(5, '에너지음료');
 
 INSERT INTO tbl_drink (DRINK_NAME, DRINK_PRICE, CATEGORY_CODE)
 VALUES
